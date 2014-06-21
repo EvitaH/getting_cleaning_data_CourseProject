@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ##README
 
 #Files:
@@ -89,3 +90,9 @@ $version.string
 $nickname
 [1] "Warm Puppy"
 
+=======
+getting_cleaning_data_CourseProject
+===================================
+
+Coursera course assignment repo
+>>>>>>> 0b345d8875314111c8bec49c3f8a2c0718ff5bd5
