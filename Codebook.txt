@@ -1,0 +1,66 @@
+R CODEBOOK
+
+This is the codebook for "run_analysis.R".
+
+original datafiles used as downloaded:
+
+features.txt
+activity_labels.txt
+./train/X_train.txt
+./train/Y_train.txt
+./train/subject_train.txt
+./test/X_test.txt
+./test/y_test.txt
+./test/subject_test.txt
+
+variables generated:
+featinfo		contains data from features.txt read as table
+myfeatmean		subset: list of all expressions from features.txt containing "mean()"
+myfeatstd		subset: list of all expressions from features.txt containing "std()"
+myfeat			combines myfeatmean and myfeatstd through rbind
+fullist			the full list of features as in featinfo; gets modified throughout script: "activity" and "subjectID" are added as elements 562 and 563
+wanted			the list of all features as in myfeat; gets modified througout script: "activity" and "subjectID" are added as elements 67 and 68. Is further modified throughout the script to remove all special characters ("(", ")", "-", ",")
+Xtest			the X_test.txt file read as dataframe
+Ytest			the y_test.txt file read as dataframe; gets modified: the column name gets changed to "activity"
+Stest			the subject_test.txt file read as dataframe; gets modified: the column name gets changed to "subjectID"
+compltest		Xtest, Ytest and Stest are combined after modifications via cbind into this dataframe
+Xtrain			the X_train.txt file read as dataframe
+Ytrain			the y_train.txt file read as dataframe; gets modified: the column name gets changed to "activity"
+Strain			the subject_train.txt file read as dataframe; gets modified: the column name gets changed to "subjectID"
+compltrain		Xtrain, Ytrain and Strain are combined after modifications via cbind into this dataframe
+completedata	compltest and compltrain are combined via rbind 
+dfcompletedata	modified completedata: the column names get assigned the values from fullist after fullist has been modified 
+dfsubdata		subset of dfcompletedata, all columns whose names occur in the list wanted, activities changed from numerical references to characters as given in activity_labels.txt, subjectID and activity combined into one column
+subdatameans	means of all numeric columns from dfsubdata grouped based on subjectID and activity combined, transformation/calculation performed with summaryBy() function
+
+files generated:
+subdatameans.txt	table output from subdatameans, tab-delimited
+
+Dimensions and classes:
+
+featinfo	dataframe	562:2	V1(integer)	V2(factor)
+myfeatmean	dataframe	33:2	V1(integer)	V2(factor)
+myfeatstd	dataframe	33:2	V1(integer)	V2(factor)
+myfeat	dataframe	66:2	V1(integer)	V2(factor)
+fullist	list	563(character)
+wanted	list	68(character)
+Xtest	dataframe	2947:561	V1-V561(numeric)
+Ytest	dataframe	2947:1	activity(integer)
+Stest	dataframe	2947:1	subjectID(integer)
+compltest	dataframe 2947:563	V1-V561(numeric)	activity(integer)	subjectID(integer)
+Xtrain	dataframe	7352:561	V1-V561(numeric)
+Ytrain	dataframe	7352:1	activity(integer)
+Strain	dataframe	7352:1	subjectID(integer)
+compltrain	dataframe 2947:563	V1-V561(numeric)	activity(integer)	subjectID(integer)
+completedata	dataframe	10299:563	V1-V561(numeric)	activity(integer)	subjectID(integer)
+dfcompletedata	dataframe	10299:563	cols1-561_indnames(numeric)	activity(integer)	subjectID(integer)
+dfsubdata	dataframe	10299:69	cols1-66_indnames(numeric)	activity(character)	subjectID(character)	actsubjID(Factor)
+subdatameans	dataframe	180:67	actsubjID(Factor)	cols2-67_indnames(numeric)	
+
+
+
+
+
+
+	
+
